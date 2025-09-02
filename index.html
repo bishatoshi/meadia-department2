@@ -2,22 +2,21 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>قسم الإعلانات</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة المشاريع</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <!-- إضافة Font Awesome للأيقونات -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
+    body {
       font-family: 'Tajawal', sans-serif;
-      background: linear-gradient(135deg, #004d26 40%, #00bfff 40%, #ffffff 100%);
+      margin: 0; padding: 0;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
+      background: linear-gradient(135deg, #004d26 40%, #00bfff 40%, #ffffff 100%);
     }
 
     header {
@@ -25,11 +24,10 @@
       padding: 15px;
       text-align: center;
       color: white;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
       background: #004d26;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -38,172 +36,158 @@
 
     .container {
       flex: 1;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 10px;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
     }
 
     .card {
       background: #fff;
       border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
+      padding: 15px;
+      width: 100%;
+      max-width: 900px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       animation: fadeIn 0.6s ease;
+      margin: 0;
     }
 
-    .card:hover { transform: scale(1.01); }
-
-    .card h2 { 
-      margin-top: 0; 
-      color: #004d26; 
-      font-size: 18px; 
+    .card h2 {
+      margin-top: 0;
+      color: #004d26;
+      font-size: 18px;
+      margin-bottom: 15px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    textarea {
-      width: 100%;
-      height: 80px;
+    textarea, input[type=text] {
+      width: calc(100% - 22px);
       border-radius: 8px;
       border: 1px solid #ccc;
-      padding: 8px;
+      padding: 10px;
       margin-top: 8px;
       font-family: inherit;
-      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    textarea { 
+      height: 80px; 
+      resize: vertical;
     }
 
     button {
       border: none;
-      padding: 8px 16px;
+      padding: 12px 20px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      margin-top: 8px;
+      margin-top: 10px;
+      font-size: 14px;
       transition: 0.3s;
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .btn-main { background: #27ae60; color: white; }
     .btn-main:hover { background: #219150; }
-
-    .btn-edit { background: #3498db; color: white; margin-left: 5px; }
-    .btn-edit:hover { background: #217dbb; }
-
-    .btn-delete { background: #e74c3c; color: white; }
-    .btn-delete:hover { background: #c0392b; }
-
-    .ad-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #f9f9f9;
-      padding: 10px;
-      border-radius: 10px;
-      margin-top: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      animation: fadeIn 0.6s ease;
-    }
-
-    .ad-content {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
 
     footer {
       text-align: center;
       padding: 15px;
       background: #004d26;
       color: #fff;
-      flex-shrink: 0;
+      margin-top: auto;
+      font-size: 14px;
     }
 
-    @keyframes fadeIn { 
-      from { opacity: 0; transform: translateY(10px); } 
-      to { opacity: 1; transform: translateY(0); } 
+    footer a {
+      color: #00bfff;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
 
-    /* تحسينات للشاشات الصغيرة */
-    @media (max-width: 768px){
-      header { 
-        font-size: 18px; 
-        padding: 12px 10px;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* تحسينات للشاشات الصغيرة جدًا */
+    @media (max-width: 480px) {
+      body {
+        background: linear-gradient(135deg, #004d26 35%, #00bfff 35%, #ffffff 100%);
+      }
+      
+      header {
+        padding: 12px;
+        font-size: 18px;
+        border-radius: 0;
       }
       
       .container {
         padding: 8px;
+        align-items: flex-start;
+        justify-content: flex-start;
       }
       
-      .card { 
+      .card {
         padding: 15px;
-        margin-bottom: 12px;
+        border-radius: 12px;
+        margin: 0 5px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
       }
       
       .card h2 {
         font-size: 16px;
+        justify-content: center;
       }
       
-      textarea { 
-        height: 70px; 
-        font-size: 14px;
+      textarea, input[type=text] {
         padding: 10px;
-      }
-      
-      button { 
-        padding: 10px 14px; 
         font-size: 14px;
-        width: 100%;
-        margin-top: 10px;
+        border: 1px solid #ddd;
+        margin: 10px 0;
       }
       
-      .ad-card {
-        flex-direction: column;
-        align-items: flex-start;
+      button {
         padding: 12px;
-        margin-top: 10px;
-      }
-      
-      .ad-card > div:first-child {
-        margin-bottom: 10px;
-        width: 100%;
         font-size: 14px;
+        margin: 8px 0;
       }
       
-      .ad-card > div:last-child {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
+      footer {
+        padding: 12px 8px;
+        font-size: 12px;
+        border-radius: 10px 10px 0 0;
       }
       
-      .btn-edit, .btn-delete {
-        margin: 0;
-        width: 48%;
-      }
-      
-      footer { 
-        padding: 12px 10px;
-        font-size: 14px;
+      footer a {
+        margin: 0 5px;
+        font-size: 13px;
       }
     }
-    
-    /* تحسينات إضافية للشاشات الصغيرة جدًا */
-    @media (max-width: 480px){
-      header { 
-        font-size: 16px; 
-        padding: 10px 8px;
+
+    /* تحسين إضافي للشاشات الصغيرة جدًا */
+    @media (max-width: 360px) {
+      body {
+        background: linear-gradient(135deg, #004d26 30%, #00bfff 30%, #ffffff 100%);
       }
       
-      .card { 
+      .container {
+        padding: 5px;
+      }
+      
+      .card {
+        margin: 0 3px;
         padding: 12px;
       }
       
@@ -211,27 +195,14 @@
         font-size: 15px;
       }
       
-      textarea { 
-        height: 60px; 
+      textarea, input[type=text] {
+        padding: 8px;
         font-size: 13px;
       }
       
-      button { 
-        padding: 8px 12px; 
-        font-size: 13px;
-      }
-      
-      .ad-card {
+      button {
         padding: 10px;
-      }
-      
-      .ad-card > div:first-child {
         font-size: 13px;
-      }
-      
-      footer { 
-        padding: 10px 8px;
-        font-size: 12px;
       }
     }
   </style>
@@ -239,136 +210,88 @@
 <body>
 
   <header>
-    <i class="fas fa-bullhorn"></i>
-    إدارة الإعلانات
+    <i class="fas fa-folder"></i>
+    إدارة المشاريع
   </header>
 
   <div class="container">
-
-    <!-- إضافة إعلان -->
+    <!-- إضافة مشروع -->
     <div class="card">
       <h2>
         <i class="fas fa-plus-circle"></i>
-        إضافة إعلان جديد
+        إضافة مشروع جديد
       </h2>
-      <textarea id="announcementText" placeholder="اكتب الإعلان هنا..."></textarea>
-      <button class="btn-main" onclick="addAnnouncement()">
-        <i class="fas fa-plus"></i>
-        إضافة إعلان
-      </button>
-    </div>
+      <input type="text" id="projName" placeholder="اسم المشروع">
+      <textarea id="projIntro" placeholder="وصف المشروع..."></textarea>
 
-    <!-- قائمة الإعلانات -->
-    <div class="card">
-      <h2>
-        <i class="fas fa-list"></i>
-        الإعلانات الحالية
-      </h2>
-      <div id="announcementList"> جاري التحميل...</div>
+      <!-- رفع صورة -->
+      <input type="file" id="projImage" accept="image/*" style="display:none;">
+      <button class="btn-main" onclick="document.getElementById('projImage').click()">
+        <i class="fas fa-camera"></i>
+        رفع صورة
+      </button>
+
+      <!-- إضافة مشروع -->
+      <button class="btn-main" onclick="addProject()">
+        <i class="fas fa-plus"></i>
+        إضافة المشروع
+      </button>
     </div>
   </div>
 
+  <!-- ✅ الفوتر -->
   <footer>
     © 2025 منظمة أهل الخير النسوية - جميع الحقوق محفوظة  
+    <br>
+    <a href="https://wa.me/+249911232937" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+      واتساب
+    </a> |
+    <a href="https://facebook.com/ahl.alkhir.3" target="_blank">
+      <i class="fab fa-facebook"></i>
+      فيسبوك
+    </a>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwbSdqbgWq98xPfpxhvfsBf22v-QXxv120ODTAM0ha5J1oLmxAb8OEv5YLsT36i0EEtdg/exec";
+    const projectScriptURL = "https://script.google.com/macros/s/AKfycbx9xL7yGgWGYPL4vH5eUUZuQGwSY9EJ-clBN6k_w1uYnKB5xvLjI4fmkOZen3ngBmoA/exec";
 
-    function loadAnnouncements(){
-      fetch(scriptURL).then(r=>r.json()).then(data=>{
-        const c=document.getElementById("announcementList");
-        if(!data.length){ c.innerHTML="<p>لا توجد إعلانات حالياً.</p>"; return; }
-        c.innerHTML=data.map(item=>`
-          <div class="ad-card">
-            <div class="ad-content">
-              <i class="fas fa-sticky-note"></i>
-              <span>${item.text}</span>
-            </div>
-            <div>
-              <button class="btn-edit" onclick="editAnnouncement('${item.id}','${(item.text||'').replace(/'/g,"\\'")}')">
-                <i class="fas fa-edit"></i>
-          
-              </button>
-              <button class="btn-delete" onclick="deleteAnnouncement('${item.id}')">
-                <i class="fas fa-trash"></i>
-                
-              </button>
-            </div>
-          </div>
-        `).join("");
+    function addProject(){
+      const name = document.getElementById("projName").value.trim();
+      const introduction = document.getElementById("projIntro").value.trim();
+      const file = document.getElementById('projImage').files[0];
+
+      if(!name || !introduction){
+        Swal.fire("تنبيه","الرجاء إدخال اسم ووصف المشروع","warning");
+        return;
+      }
+
+      if(file){
+        const reader = new FileReader();
+        reader.onload = e => { sendToSheet(name, "#27ae60", e.target.result, introduction); };
+        reader.readAsDataURL(file);
+      } else {
+        sendToSheet(name, "#27ae60", "", introduction);
+      }
+    }
+
+    function sendToSheet(name,color,imageBase64,introduction){
+      fetch(projectScriptURL,{
+        method:'POST',
+        body:JSON.stringify({name,color,imageBase64,introduction})
+      })
+      .then(r=>r.text()).then(()=>{
+        Swal.fire("تم","✅ تم رفع المشروع بنجاح","success");
+        document.getElementById("projName").value="";
+        document.getElementById("projIntro").value="";
+        document.getElementById("projImage").value="";
+      })
+      .catch(err=>{
+        console.error(err);
+        Swal.fire("خطأ","❌ حصل خطأ أثناء رفع المشروع","error");
       });
     }
-
-    function addAnnouncement(){
-      const t=document.getElementById("announcementText").value.trim();
-      if(!t) return Swal.fire("تنبيه","الرجاء كتابة نص الإعلان","warning");
-      fetch(scriptURL,{method:"POST",body:JSON.stringify({action:"add",text:t})})
-        .then(()=>{ 
-          document.getElementById("announcementText").value="";
-          Swal.fire({
-            title: "تم",
-            text: "تمت إضافة الإعلان بنجاح",
-            icon: "success",
-            confirmButtonText: "موافق"
-          });
-          loadAnnouncements(); 
-        });
-    }
-
-    function deleteAnnouncement(id){
-      Swal.fire({
-        title: 'هل أنت متأكد؟',
-        text: "لن تتمكن من استرجاع هذا الإعلان!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'نعم، احذف',
-        cancelButtonText: 'إلغاء',
-        confirmButtonColor: '#e74c3c'
-      }).then((result) => {
-        if(result.isConfirmed){
-          fetch(scriptURL,{method:"POST",body:JSON.stringify({action:"delete",id})})
-            .then(()=>{ 
-              Swal.fire({
-                title: "تم",
-                text: "تم الحذف بنجاح",
-                icon: "success",
-                confirmButtonText: "موافق"
-              }); 
-              loadAnnouncements(); 
-            });
-        }
-      });
-    }
-
-    function editAnnouncement(id,oldText){
-      Swal.fire({
-        title: 'تعديل الإعلان',
-        input: 'text',
-        inputValue: oldText,
-        showCancelButton: true,
-        confirmButtonText: 'حفظ',
-        cancelButtonText: 'إلغاء',
-        confirmButtonColor: '#3498db'
-      }).then((result) => {
-        if(result.isConfirmed && result.value){
-          fetch(scriptURL,{method:"POST",body:JSON.stringify({action:"edit",id,text:result.value})})
-            .then(()=>{ 
-              Swal.fire({
-                title: "تم",
-                text: "تم تعديل الإعلان",
-                icon: "success",
-                confirmButtonText: "موافق"
-              }); 
-              loadAnnouncements(); 
-            });
-        }
-      });
-    }
-
-    loadAnnouncements();
   </script>
-
 </body>
 </html>
