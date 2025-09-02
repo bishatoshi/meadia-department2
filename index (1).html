@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>قسم الإعلانات</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(135deg, #004d26 40%, #00bfff 40%, #ffffff 100%);
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      width: 100%;
+      padding: 15px;
+      text-align: center;
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      background: #004d26;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .container {
+      flex: 1;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .card:hover { transform: scale(1.01); }
+
+    .card h2 { 
+      margin-top: 0; 
+      color: #004d26; 
+      font-size: 18px; 
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 8px;
+      margin-top: 8px;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+
+    button {
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 8px;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-main { background: #27ae60; color: white; }
+    .btn-main:hover { background: #219150; }
+
+    .btn-edit { background: #3498db; color: white; margin-left: 5px; }
+    .btn-edit:hover { background: #217dbb; }
+
+    .btn-delete { background: #e74c3c; color: white; }
+    .btn-delete:hover { background: #c0392b; }
+
+    .ad-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      animation: fadeIn 0.6s ease;
+    }
+
+    .ad-content {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #004d26;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    @keyframes fadeIn { 
+      from { opacity: 0; transform: translateY(10px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+
+    /* تحسينات للشاشات الصغيرة */
+    @media (max-width: 768px){
+      header { 
+        font-size: 18px; 
+        padding: 12px 10px;
+      }
+      
+      .container {
+        padding: 8px;
+      }
+      
+      .card { 
+        padding: 15px;
+        margin-bottom: 12px;
+      }
+      
+      .card h2 {
+        font-size: 16px;
+      }
+      
+      textarea { 
+        height: 70px; 
+        font-size: 14px;
+        padding: 10px;
+      }
+      
+      button { 
+        padding: 10px 14px; 
+        font-size: 14px;
+        width: 100%;
+        margin-top: 10px;
+      }
+      
+      .ad-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px;
+        margin-top: 10px;
+      }
+      
+      .ad-card > div:first-child {
+        margin-bottom: 10px;
+        width: 100%;
+        font-size: 14px;
+      }
+      
+      .ad-card > div:last-child {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .btn-edit, .btn-delete {
+        margin: 0;
+        width: 48%;
+      }
+      
+      footer { 
+        padding: 12px 10px;
+        font-size: 14px;
+      }
+    }
+    
+    /* تحسينات إضافية للشاشات الصغيرة جدًا */
+    @media (max-width: 480px){
+      header { 
+        font-size: 16px; 
+        padding: 10px 8px;
+      }
+      
+      .card { 
+        padding: 12px;
+      }
+      
+      .card h2 {
+        font-size: 15px;
+      }
+      
+      textarea { 
+        height: 60px; 
+        font-size: 13px;
+      }
+      
+      button { 
+        padding: 8px 12px; 
+        font-size: 13px;
+      }
+      
+      .ad-card {
+        padding: 10px;
+      }
+      
+      .ad-card > div:first-child {
+        font-size: 13px;
+      }
+      
+      footer { 
+        padding: 10px 8px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <i class="fas fa-bullhorn"></i>
+    إدارة الإعلانات
+  </header>
+
+  <div class="container">
+
+    <!-- إضافة إعلان -->
+    <div class="card">
+      <h2>
+        <i class="fas fa-plus-circle"></i>
+        إضافة إعلان جديد
+      </h2>
+      <textarea id="announcementText" placeholder="اكتب الإعلان هنا..."></textarea>
+      <button class="btn-main" onclick="addAnnouncement()">
+        <i class="fas fa-plus"></i>
+        إضافة إعلان
+      </button>
+    </div>
+
+    <!-- قائمة الإعلانات -->
+    <div class="card">
+      <h2>
+        <i class="fas fa-list"></i>
+        الإعلانات الحالية
+      </h2>
+      <div id="announcementList"> جاري التحميل...</div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 منظمة أهل الخير النسوية - جميع الحقوق محفوظة  
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwbSdqbgWq98xPfpxhvfsBf22v-QXxv120ODTAM0ha5J1oLmxAb8OEv5YLsT36i0EEtdg/exec";
+
+    function loadAnnouncements(){
+      fetch(scriptURL).then(r=>r.json()).then(data=>{
+        const c=document.getElementById("announcementList");
+        if(!data.length){ c.innerHTML="<p>لا توجد إعلانات حالياً.</p>"; return; }
+        c.innerHTML=data.map(item=>`
+          <div class="ad-card">
+            <div class="ad-content">
+              <i class="fas fa-sticky-note"></i>
+              <span>${item.text}</span>
+            </div>
+            <div>
+              <button class="btn-edit" onclick="editAnnouncement('${item.id}','${(item.text||'').replace(/'/g,"\\'")}')">
+                <i class="fas fa-edit"></i>
+          
+              </button>
+              <button class="btn-delete" onclick="deleteAnnouncement('${item.id}')">
+                <i class="fas fa-trash"></i>
+                
+              </button>
+            </div>
+          </div>
+        `).join("");
+      });
+    }
+
+    function addAnnouncement(){
+      const t=document.getElementById("announcementText").value.trim();
+      if(!t) return Swal.fire("تنبيه","الرجاء كتابة نص الإعلان","warning");
+      fetch(scriptURL,{method:"POST",body:JSON.stringify({action:"add",text:t})})
+        .then(()=>{ 
+          document.getElementById("announcementText").value="";
+          Swal.fire({
+            title: "تم",
+            text: "تمت إضافة الإعلان بنجاح",
+            icon: "success",
+            confirmButtonText: "موافق"
+          });
+          loadAnnouncements(); 
+        });
+    }
+
+    function deleteAnnouncement(id){
+      Swal.fire({
+        title: 'هل أنت متأكد؟',
+        text: "لن تتمكن من استرجاع هذا الإعلان!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'نعم، احذف',
+        cancelButtonText: 'إلغاء',
+        confirmButtonColor: '#e74c3c'
+      }).then((result) => {
+        if(result.isConfirmed){
+          fetch(scriptURL,{method:"POST",body:JSON.stringify({action:"delete",id})})
+            .then(()=>{ 
+              Swal.fire({
+                title: "تم",
+                text: "تم الحذف بنجاح",
+                icon: "success",
+                confirmButtonText: "موافق"
+              }); 
+              loadAnnouncements(); 
+            });
+        }
+      });
+    }
+
+    function editAnnouncement(id,oldText){
+      Swal.fire({
+        title: 'تعديل الإعلان',
+        input: 'text',
+        inputValue: oldText,
+        showCancelButton: true,
+        confirmButtonText: 'حفظ',
+        cancelButtonText: 'إلغاء',
+        confirmButtonColor: '#3498db'
+      }).then((result) => {
+        if(result.isConfirmed && result.value){
+          fetch(scriptURL,{method:"POST",body:JSON.stringify({action:"edit",id,text:result.value})})
+            .then(()=>{ 
+              Swal.fire({
+                title: "تم",
+                text: "تم تعديل الإعلان",
+                icon: "success",
+                confirmButtonText: "موافق"
+              }); 
+              loadAnnouncements(); 
+            });
+        }
+      });
+    }
+
+    loadAnnouncements();
+  </script>
+
+</body>
+</html>
